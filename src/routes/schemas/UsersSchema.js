@@ -1,7 +1,7 @@
 import Joi from 'joi';
 import RouteValidator from '../../middlewares/RouteValidator';
 
-export default class UserSchema extends RouteValidator {
+export default class UsersSchema extends RouteValidator {
   static get post() {
     const schema = {
       body: Joi.object().keys({

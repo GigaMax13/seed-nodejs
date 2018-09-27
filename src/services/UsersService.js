@@ -1,18 +1,18 @@
-import UserModel from '../models/UserModel';
+import UsersModel from '../models/UsersModel';
 import CustomError from '../helpers/CustomError';
 
-export default class UserService {
+export default class UsersService {
   static post(data) {
     const {
       email,
     } = data;
 
-    return UserModel.exist(email).then((exist) => {
+    return UsersModel.exist(email).then((exist) => {
       if (exist) {
         return Promise.reject(new CustomError(__('routes.user.post.409'), 409));
       }
 
-      return UserModel.post(data).then((user) => {
+      return UsersModel.post(data).then((user) => {
         const {
           id_user: id,
         } = user;
@@ -24,7 +24,7 @@ export default class UserService {
 
   static get(data) {
     return new Promise((resolve, reject) => {
-      UserModel.get(data).then((result) => {
+      UsersModel.get(data).then((result) => {
         if (result) {
           const {
             id_user: id,
@@ -57,7 +57,7 @@ export default class UserService {
       page = Number(page || 1);
       size = Number(size || 10);
 
-      UserModel.list({ page, size }).then((result) => {
+      UsersModel.list({ page, size }).then((result) => {
         if (result) {
           const {
             users,
@@ -97,7 +97,7 @@ export default class UserService {
 
   static put(data) {
     return new Promise((resolve, reject) => {
-      UserModel.put(data).then((result) => {
+      UsersModel.put(data).then((result) => {
         if (result) {
           resolve();
         } else {
@@ -111,7 +111,7 @@ export default class UserService {
 
   static delete(data) {
     return new Promise((resolve, reject) => {
-      UserModel.delete(data).then(() => resolve()).catch(() => {
+      UsersModel.delete(data).then(() => resolve()).catch(() => {
         reject(new CustomError(__('server.error.404'), 404));
       });
     });

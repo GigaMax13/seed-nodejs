@@ -7,6 +7,9 @@ import compression from 'compression';
 
 import LoggerConfig from './config/LoggerConfig';
 import i18n from './config/i18n';
+import Logger from './helpers/Logger';
+
+import Users from './routes/Users';
 
 config();
 
@@ -38,6 +41,7 @@ app.get(['/', '/status'], (req, res) => {
 });
 
 /* Routes */
+app.use('/users', Users);
 
 /* Log errors */
 LoggerConfig.expressError(app);
@@ -51,5 +55,5 @@ app.all('*', (req, res) => {
 
 /* Startup message */
 app.listen(PORT, () => {
-  console.log(`Server started on port ${PORT}`); // eslint-disable-line
+  Logger.info(`Server started on port ${PORT}`);
 });

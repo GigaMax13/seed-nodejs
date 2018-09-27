@@ -3,22 +3,22 @@ import uuid from 'uuid/v1';
 import db from '../config/db';
 import RedundancyPolicy from '../helpers/RedundancyPolicy';
 
-const UserLogin = db.Model.extend({
+const UsersLogin = db.Model.extend({
   tableName: 'seed.cfg_users_login',
   idAttribute: 'sk_users_login',
 });
 
-const User = db.Model.extend({
+const Users = db.Model.extend({
   tableName: 'seed.cfg_users',
   idAttribute: 'sk_user',
   login() {
-    return this.hasMany(UserLogin, 'id_user', 'id_user');
+    return this.hasMany(UsersLogin, 'id_user', 'id_user');
   },
 }, {
   dependents: ['login'],
 });
 
-export default class UserModel {
+export default class UsersModel {
   static post(data) {
     const {
       name,
@@ -27,7 +27,7 @@ export default class UserModel {
     } = data;
     const id = uuid();
 
-    return User.forge({
+    return Users.forge({
       id_user: id,
       nm_user: name,
       nm_email: email,
@@ -44,13 +44,13 @@ export default class UserModel {
   }
 
   static get({ userId }) {
-    return new User().where({
+    return new Users().where({
       id_user: userId,
     }).fetch().then(data => (data ? data.toJSON() : null));
   }
 
   static list({ page, size: pageSize }) {
-    return new User().where({
+    return new Users().where({
       is_active: true,
     }).orderBy('ts_created_at')
       .fetchPage({
@@ -101,19 +101,19 @@ export default class UserModel {
       };
     }
 
-    return User.forge().where({
+    return Users.forge().where({
       id_user: userId,
     }).save(newUserData, { method: 'update' });
   }
 
   static delete({ userId }) {
-    return new UserLogin().where({ id_user: userId }).destroy().then(() => {
-      return new User().where({ id_user: userId }).destroy();
+    return new UsersLogin().where({ id_user: userId }).destroy().then(() => {
+      return new Users().where({ id_user: userId }).destroy();
     });
   }
 
   static exist(email) {
-    return new User().where({
+    return new Users().where({
       nm_email: email,
       is_active: 1,
     }).fetch().then(data => !!data);

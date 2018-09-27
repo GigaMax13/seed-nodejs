@@ -1,9 +1,9 @@
-import UserService from '../services/UserService';
+import UsersService from '../services/UsersService';
 import CustomError from '../helpers/CustomError';
 
-export default class UserController {
+export default class UsersController {
   static post(req, res) {
-    UserService.post({ ...req.body, ...req.locals }).then((data) => {
+    UsersService.post({ ...req.body, ...req.locals }).then((data) => {
       res.status(201).send({
         success: true,
         data,
@@ -14,7 +14,7 @@ export default class UserController {
   }
 
   static get(req, res) {
-    UserService.get({ ...req.params, ...req.locals }).then((data) => {
+    UsersService.get({ ...req.params, ...req.locals }).then((data) => {
       res.send({
         success: true,
         data,
@@ -25,7 +25,7 @@ export default class UserController {
   }
 
   static list(req, res) {
-    UserService.list({ ...req.query, ...req.locals }).then((data) => {
+    UsersService.list({ ...req.query, ...req.locals }).then((data) => {
       res.send({
         success: true,
         ...data,
@@ -36,7 +36,7 @@ export default class UserController {
   }
 
   static put(req, res) {
-    UserService.put({ ...req.params, ...req.body, ...req.locals }).then(() => {
+    UsersService.put({ ...req.params, ...req.body, ...req.locals }).then(() => {
       res.status(204).send();
     }).catch((err) => {
       CustomError.handler(res, err);
@@ -44,7 +44,7 @@ export default class UserController {
   }
 
   static delete(req, res) {
-    UserService.delete({ ...req.params, ...req.locals }).then(() => {
+    UsersService.delete({ ...req.params, ...req.locals }).then(() => {
       res.status(204).send();
     }).catch((err) => {
       CustomError.handler(res, err);
