@@ -1,0 +1,101 @@
+{
+  "name": "seed-nodejs",
+  "version": "1.0.0",
+  "description": "Seed project created to serve as a starting point for new projects, suggesting some patterns, dependencies/pacakges and style guide.",
+  "main": "src/app.js",
+  "scripts": {
+    "lint": "eslint src || exit 0",
+    "start": "npm run build && npm run start:pm2",
+    "build": "npx babel src --out-dir build --copy-files",
+    "start:pm2": "pm2 start process.yml",
+    "stop": "pm2 stop process.yml",
+    "restart": "pm2 restart process.yml",
+    "dev": "nodemon src/app.js --exec babel-node",
+    "dev:worker": "nodemon src/worker.js --exec babel-node",
+    "test": "./node_modules/.bin/mocha src/**/*.test.js --require babel-register",
+    "test:tdd": "./node_modules/.bin/mocha src/**/*.test.js --require babel-register --watch",
+    "coverage": "nyc npm test"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint && npm run coverage",
+      "pre-push": "npm run lint && npm run coverage"
+    }
+  },
+  "nyc": {
+    "functions": 80,
+    "lines": 80,
+    "check-coverage": true,
+    "reporter": [
+      "text",
+      "html"
+    ],
+    "exclude": [
+      "src/**/*.test.js"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/GigaMax13/seed-nodejs"
+  },
+  "keywords": [
+    "seed",
+    "node",
+    "pm2",
+    "babel",
+    "i18n",
+    "bookshelf"
+  ],
+  "author": "GigaMax13",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "bookshelf": "^0.13.3",
+    "compression": "^1.6.2",
+    "cors": "^2.8.1",
+    "cron": "^1.2.1",
+    "dotenv": "^4.0.0",
+    "express": "^4.14.0",
+    "express-formidable": "^1.0.0",
+    "express-limiter": "^1.6.1",
+    "express-winston": "^2.4.0",
+    "formidable": "^1.2.1",
+    "fs": "0.0.1-security",
+    "helmet": "^3.3.0",
+    "i18n": "^0.8.3",
+    "joi": "^11.3.3",
+    "jsonwebtoken": "^8.2.1",
+    "knex": "^0.13.0",
+    "lodash": "^4.17.4",
+    "moment": "^2.18.1",
+    "moment-timezone": "^0.5.21",
+    "mysql": "^2.15.0",
+    "mysql2": "^1.1.2",
+    "redis": "^2.8.0",
+    "redis-commands": "^1.3.5",
+    "request": "^2.81.0",
+    "request-debug": "^0.2.0",
+    "sha256": "^0.2.0",
+    "string-mask": "^0.3.0",
+    "uuid": "^3.3.2",
+    "winston": "^2.3.0",
+    "winston-firehose": "^1.0.8"
+  },
+  "devDependencies": {
+    "@mocha/eslint-config-mocha": "0.0.0",
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-stage-2": "^6.24.1",
+    "babel-register": "^6.26.0",
+    "chai": "^4.1.2",
+    "coveralls": "^3.0.0",
+    "eslint": "^4.8.0",
+    "eslint-config-airbnb-base": "^12.0.2",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-promise": "^4.0.1",
+    "husky": "^1.0.0",
+    "mocha": "^5.1.1",
+    "nyc": "^11.2.1"
+  }
+}
