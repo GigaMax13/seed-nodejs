@@ -1,1 +1,18 @@
-{}
+{
+  "server": {
+    "error": {
+      "404": "Não encontrado.",
+      "500": "Erro interno do servidor."
+    }
+  },
+  "routes": {
+    "user": {
+      "post": {
+        "409": "Usuário já criado."
+      }
+    }
+  },
+  "cron": {
+    "test": "Cron teste."
+  }
+}
