@@ -1,14 +1,14 @@
 import uuid from 'uuid/v1';
 
-import db from '../config/db';
-import RedundancyPolicy from '../helpers/RedundancyPolicy';
+import { Connection } from '../config';
+import { RedundancyPolicy } from '../helpers';
 
-const UsersLogin = db.Model.extend({
+const UsersLogin = Connection.Model.extend({
   tableName: 'seed.cfg_users_login',
   idAttribute: 'sk_users_login',
 });
 
-const Users = db.Model.extend({
+const Users = Connection.Model.extend({
   tableName: 'seed.cfg_users',
   idAttribute: 'sk_user',
   login() {
@@ -18,7 +18,7 @@ const Users = db.Model.extend({
   dependents: ['login'],
 });
 
-export default class UsersModel {
+class UsersModel {
   static post(data) {
     const {
       name,
@@ -119,3 +119,5 @@ export default class UsersModel {
     }).fetch().then(data => !!data);
   }
 }
+
+export { UsersModel };

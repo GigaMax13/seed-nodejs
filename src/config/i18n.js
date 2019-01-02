@@ -17,4 +17,6 @@ i18n.configure({
   register: global,
 });
 
+export { i18n };
+
 export default i18n;

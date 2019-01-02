@@ -1,7 +1,7 @@
-import UsersModel from '../models/UsersModel';
-import CustomError from '../helpers/CustomError';
+import { UsersModel } from '../models/UsersModel';
+import { CustomError } from '../helpers/CustomError';
 
-export default class UsersService {
+class UsersService {
   static post(data) {
     const {
       email,
@@ -117,3 +117,5 @@ export default class UsersService {
     });
   }
 }
+
+export { UsersService };

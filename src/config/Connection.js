@@ -1,5 +1,8 @@
+import { config } from 'dotenv';
 import knex from 'knex';
 import bookshelf from 'bookshelf';
+
+config();
 
 const {
   DB_CLIENT,
@@ -10,7 +13,7 @@ const {
   DB_SSL,
 } = process.env;
 
-const db = bookshelf(knex({
+const Connection = bookshelf(knex({
   client: DB_CLIENT,
   connection: {
     host: DB_HOST,
@@ -18,11 +21,11 @@ const db = bookshelf(knex({
     user: DB_USER,
     password: DB_PASS,
     charset: 'utf8',
-    ssl: DB_SSL.toLowerCase() === 'true',
+    ssl: DB_SSL && DB_SSL.toLowerCase() === 'true',
   },
 }));
 
-db.plugin('pagination');
-db.plugin('registry');
+Connection.plugin('pagination');
+Connection.plugin('registry');
 
-export default db;
+export { Connection };

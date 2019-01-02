@@ -1,7 +1,7 @@
 import Joi from 'joi';
-import RouteValidator from '../../middlewares/RouteValidator';
+import { RouteValidator } from '../../middlewares';
 
-export default class UsersSchema extends RouteValidator {
+class UsersSchema extends RouteValidator {
   static get post() {
     const schema = {
       body: Joi.object().keys({
@@ -59,3 +59,5 @@ export default class UsersSchema extends RouteValidator {
     return this.validate(schema);
   }
 }
+
+export { UsersSchema };

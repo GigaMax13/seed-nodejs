@@ -45,4 +45,4 @@ class Mapping {
   }
 }
 
-export default Mapping;
+export { Mapping };

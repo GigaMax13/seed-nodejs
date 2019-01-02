@@ -37,4 +37,4 @@ class RouteValidator {
   }
 }
 
-export default RouteValidator;
+export { RouteValidator };

@@ -1,7 +1,7 @@
-import UsersService from '../services/UsersService';
-import CustomError from '../helpers/CustomError';
+import { UsersService } from '../services/UsersService';
+import { CustomError } from '../helpers';
 
-export default class UsersController {
+class UsersController {
   static post(req, res) {
     UsersService.post({ ...req.body, ...req.locals }).then((data) => {
       res.status(201).send({
@@ -51,3 +51,5 @@ export default class UsersController {
     });
   }
 }
+
+export { UsersController };

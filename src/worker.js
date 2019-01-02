@@ -1,6 +1,6 @@
-import LoggerConfig from './config/LoggerConfig';
-import Logger from './helpers/Logger';
-import Cron from './config/Cron';
+import { Cron, LoggerConfig } from './config';
+import { Logger } from './helpers';
+
 import './config/i18n';
 
 LoggerConfig.init();

@@ -6,7 +6,7 @@ import Request from 'request';
 import RequestDebug from 'request-debug';
 import * as moment from 'moment-timezone';
 
-import Logger from '../helpers/Logger';
+import { Logger } from '../helpers/Logger';
 
 config();
 
@@ -204,4 +204,4 @@ class LoggerConfig {
   }
 }
 
-export default LoggerConfig;
+export { LoggerConfig };

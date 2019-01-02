@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import Moment from 'moment-timezone';
-import Conversion from './Conversion';
+import { Conversion } from './Conversion';
 
 describe('#Conversion', () => {
   describe('Smoke tests', () => {

@@ -28,15 +28,6 @@ class Logger {
   static info(...info) {
     log('info', ...info);
   }
-
-  static blacklists(req, list = []) {
-    req._routeBlacklists.body = list; // eslint-disable-line
-  }
-
-  static throw(res, code, ...args) {
-    this.error(...args);
-    res.status(500).send({ success: false, code, message: res.__('helpers.logger.throw') });
-  }
 }
 
-module.exports = Logger;
+export { Logger };

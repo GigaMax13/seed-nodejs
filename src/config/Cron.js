@@ -1,5 +1,5 @@
 import { CronJob } from 'cron';
-import Logger from '../helpers/Logger';
+import { Logger } from '../helpers/Logger';
 
 const workers = {};
 
@@ -113,4 +113,4 @@ class Cron {
   }
 }
 
-export default Cron;
+export { Cron };

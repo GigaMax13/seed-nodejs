@@ -1,6 +1,6 @@
 import sha256 from 'sha256';
 
-export default class RedundancyPolicy {
+class RedundancyPolicy {
   static sha256(text, salt = '', redundancy = 3e4) {
     let encryptedText = text;
 
@@ -11,3 +11,5 @@ export default class RedundancyPolicy {
     return encryptedText;
   }
 }
+
+export { RedundancyPolicy };

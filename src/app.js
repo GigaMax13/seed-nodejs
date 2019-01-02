@@ -5,11 +5,10 @@ import cors from 'cors';
 import bodyParser from 'body-parser';
 import compression from 'compression';
 
-import LoggerConfig from './config/LoggerConfig';
-import i18n from './config/i18n';
-import Logger from './helpers/Logger';
+import { i18n, LoggerConfig } from './config';
+import { Logger } from './helpers';
 
-import Users from './routes/Users';
+import { Users } from './routes/Users';
 
 config();
 

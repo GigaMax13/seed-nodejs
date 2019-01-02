@@ -1,4 +1,4 @@
-export default class CustomError {
+class CustomError {
   static handler(res, err) {
     err.stack && console.error(err.stack); // eslint-disable-line
 
@@ -23,3 +23,5 @@ export default class CustomError {
     this.stack = stack;
   }
 }
+
+export { CustomError };
